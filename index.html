@@ -41,6 +41,12 @@
 </head>
 <body>
 
+<div style="position: absolute; left: 50%; margin-top: 100px; text-align: center">
+    <div style="position: relative; left: -50%; background-color: #ffffff; -moz-border-radius: 10px; -webkit-border-radius: 10px; box-shadow: 5px 5px 5px #333333;">
+        <img src="title.png" alt="Title" width="60%"/>
+    </div>
+</div>
+
 <div class="mainLayout left" id="left">
     <div class="clearFlt">
         <a class="android-logo" href="https://play.google.com/store/apps/details?id=com.charlires.colorgame">
@@ -64,11 +70,11 @@
         var i = 0;
         while (i < 150) {
             setTimeout(function () {
-                var color = "#" + Math.floor(Math.random()*16777215).toString(16);
+                var color = "#" + Math.floor(Math.random() * 16777215).toString(16);
                 if (Math.round((Math.random() * 10)) % 2 == 0) {
                     $("#left").css("background-color", color);
                     $("#right").css("background-color", increase_brightness(color, 10));
-                } else  {
+                } else {
                     $("#left").css("background-color", increase_brightness(color, 10));
                     $("#right").css("background-color", color);
                 }
@@ -77,12 +83,12 @@
         }
     });
 
-    function increase_brightness(hex, percent){
+    function increase_brightness(hex, percent) {
         // strip the leading # if it's there
         hex = hex.replace(/^\s*#|\s*$/g, '');
 
         // convert 3 char codes --> 6, e.g. `E0F` --> `EE00FF`
-        if(hex.length == 3){
+        if (hex.length == 3) {
             hex = hex.replace(/(.)/g, '$1$1');
         }
 
@@ -91,9 +97,9 @@
                 b = parseInt(hex.substr(4, 2), 16);
 
         return '#' +
-                ((0|(1<<8) + r + (256 - r) * percent / 100).toString(16)).substr(1) +
-                ((0|(1<<8) + g + (256 - g) * percent / 100).toString(16)).substr(1) +
-                ((0|(1<<8) + b + (256 - b) * percent / 100).toString(16)).substr(1);
+                ((0 | (1 << 8) + r + (256 - r) * percent / 100).toString(16)).substr(1) +
+                ((0 | (1 << 8) + g + (256 - g) * percent / 100).toString(16)).substr(1) +
+                ((0 | (1 << 8) + b + (256 - b) * percent / 100).toString(16)).substr(1);
     }
 
 </script>
