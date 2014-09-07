@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="right_col">
-        <a class="apple-logo" href="https://play.google.com/store/apps/details?id=com.charlires.colorgame">
+        <a class="apple-logo" href="https://itunes.apple.com/app/id910810295">
             <img alt="Android app on Google Play"
                  src="app-store.png" width="512" />
         </a>
@@ -23,5 +23,18 @@
           
         </div>
     </div>
+
+    <script>
+
+        var iPhone = (/iphone|ipod/i.test(navigator.userAgent.toLowerCase()));
+        var android = (/android/i.test(navigator.userAgent.toLowerCase()));
+
+        if (iPhone) {
+            window.location = "https://itunes.apple.com/app/id910810295";
+        } else if (android) {
+            window.location = "https://play.google.com/store/apps/details?id=com.charlires.colorgame";
+        }
+
+    </script>
 </body>
 </html>
