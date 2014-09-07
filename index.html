@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <link rel="stylesheet" href="main.css"/>
-    <meta charset="UTF-8">
-    <title>asdasd</title>
-</head>
-<body>
-    <div class="right_col">
-        <a class="apple-logo" href="https://itunes.apple.com/app/id910810295">
-            <img alt="Android app on Google Play"
-                 src="app-store.png" width="512" />
-        </a>
-        <div class="right_col_inner">
-        </div>
-    </div>
-    <div class="left_col">
-        <a class="android-logo" href="https://play.google.com/store/apps/details?id=com.charlires.colorgame">
-            <img alt="Android app on Google Play"
-                 src="en_app_rgb_wo_60.png" width="512" />
-        </a>
-        <div class="left_col_inner">
-          
-        </div>
-    </div>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
 
+        div.mainLayout {
+            text-align: center;
+            float: left;
+            width: 50%;
+            height: 100%;
+
+        }
+
+        div.mainLayout img {
+            width: 50%;
+        }
+
+        div.clearFlt {
+            clear: both;
+            margin-top: 50%;
+        }
+
+    </style>
     <script>
-
         var iPhone = (/iphone|ipod/i.test(navigator.userAgent.toLowerCase()));
         var android = (/android/i.test(navigator.userAgent.toLowerCase()));
 
@@ -34,7 +35,67 @@
         } else if (android) {
             window.location = "https://play.google.com/store/apps/details?id=com.charlires.colorgame";
         }
-
     </script>
+    <meta charset="UTF-8">
+    <title>Color Run Game</title>
+</head>
+<body>
+
+<div class="mainLayout left" id="left">
+    <div class="clearFlt">
+        <a class="android-logo" href="https://play.google.com/store/apps/details?id=com.charlires.colorgame">
+            <img alt="Android app on Google Play"
+                 src="en_app_rgb_wo_60.png"/>
+        </a>
+    </div>
+</div>
+<div class="mainLayout right" id="right">
+    <div class="clearFlt">
+        <a class="apple-logo" href="https://itunes.apple.com/app/id910810295">
+            <img alt="Android app on Google Play"
+                 src="app-store.png"/>
+        </a>
+    </div>
+</div>
+
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var i = 0;
+        while (i < 150) {
+            setTimeout(function () {
+                var color = "#" + Math.floor(Math.random()*16777215).toString(16);
+                if (Math.round((Math.random() * 10)) % 2 == 0) {
+                    $("#left").css("background-color", color);
+                    $("#right").css("background-color", increase_brightness(color, 10));
+                } else  {
+                    $("#left").css("background-color", increase_brightness(color, 10));
+                    $("#right").css("background-color", color);
+                }
+            }, 2000 * i);
+            i++;
+        }
+    });
+
+    function increase_brightness(hex, percent){
+        // strip the leading # if it's there
+        hex = hex.replace(/^\s*#|\s*$/g, '');
+
+        // convert 3 char codes --> 6, e.g. `E0F` --> `EE00FF`
+        if(hex.length == 3){
+            hex = hex.replace(/(.)/g, '$1$1');
+        }
+
+        var r = parseInt(hex.substr(0, 2), 16),
+                g = parseInt(hex.substr(2, 2), 16),
+                b = parseInt(hex.substr(4, 2), 16);
+
+        return '#' +
+                ((0|(1<<8) + r + (256 - r) * percent / 100).toString(16)).substr(1) +
+                ((0|(1<<8) + g + (256 - g) * percent / 100).toString(16)).substr(1) +
+                ((0|(1<<8) + b + (256 - b) * percent / 100).toString(16)).substr(1);
+    }
+
+</script>
 </body>
 </html>
