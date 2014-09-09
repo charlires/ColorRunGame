@@ -1,6 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
+    <meta charset="UTF-8">
+    <!-- for Google -->
+    <meta name="description" content="An arcade game based in colors, fun and beautiful" />
+    <meta name="keywords" content="game color-run" />
+
+    <meta name="author" content="Carlos Andonaegui" />
+    <meta name="copyright" content="" />
+    <meta name="application-name" content="Color RUn Game" />
+
+    <!-- for Facebook -->
+    <meta property="og:title" content="Color Run Game" />
+    <meta property="og:type" content="text/html" />
+    <meta property="og:image" content="icon.png" />
+    <meta property="og:url" content="colorrungame.com" />
+    <meta property="og:description" content="An arcade game based in colors, fun and beautiful" />
+
+    <!-- for Twitter -->
+    <meta name="twitter:card" content="Mobile Game" />
+    <meta name="twitter:title" content="Color Run Game" />
+    <meta name="twitter:description" content="An arcade game based in colors, fun and beautiful" />
+    <meta name="twitter:image" content="icon.png" />
+
     <style>
         body, html {
             height: 100%;
@@ -22,7 +44,17 @@
 
         div.clearFlt {
             clear: both;
-            margin-top: 50%;
+            margin-top: 400px;
+        }
+
+        @media (max-width: 600px) {
+            div.clearFlt {
+                margin-top: 400px;
+            }
+
+            div.mainLayout img {
+                width: 100%;
+            }
         }
 
     </style>
@@ -36,8 +68,9 @@
             window.location = "https://play.google.com/store/apps/details?id=com.charlires.colorgame";
         }
     </script>
-    <meta charset="UTF-8">
+
     <title>Color Run Game</title>
+
 </head>
 <body>
 
@@ -51,7 +84,7 @@
     <div class="clearFlt">
         <a class="android-logo" href="https://play.google.com/store/apps/details?id=com.charlires.colorgame">
             <img alt="Android app on Google Play"
-                 src="en_app_rgb_wo_60.png"/>
+                 src="Google-Play.png"/>
         </a>
     </div>
 </div>
