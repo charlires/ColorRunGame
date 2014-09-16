@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" prefix="og: http://ogp.me/ns#">
     <!-- for Google -->
     <meta name="description" content="An arcade game based in colors, fun and beautiful"/>
     <meta name="keywords" content="game color-run"/>
@@ -110,41 +110,32 @@
 </div>
 
 <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script src="tinycolor.js"></script>
 <script>
     $(document).ready(function () {
         var i = 0;
         while (i < 150) {
             setTimeout(function () {
-                var color = "#" + Math.floor(Math.random() * 16777215).toString(16);
+                var color = Math.floor(Math.random() * 360) + 1;
+                console.log(color);
                 if (Math.round((Math.random() * 10)) % 2 == 0) {
-                    $("#left").css("background-color", color);
-                    $("#right").css("background-color", increase_brightness(color, 10));
+                    $("#left").css("background-color", lightColor(color));
+                    $("#right").css("background-color", darkColor(color));
                 } else {
-                    $("#left").css("background-color", increase_brightness(color, 10));
-                    $("#right").css("background-color", color);
+                    $("#left").css("background-color", darkColor(color));
+                    $("#right").css("background-color", lightColor(color));
                 }
             }, 2000 * i);
             i++;
         }
     });
 
-    function increase_brightness(hex, percent) {
-        // strip the leading # if it's there
-        hex = hex.replace(/^\s*#|\s*$/g, '');
+    function lightColor(h) {
+        return tinycolor("hsv(" + h + ", 80%, 80%)").toHexString();
+    }
 
-        // convert 3 char codes --> 6, e.g. `E0F` --> `EE00FF`
-        if (hex.length == 3) {
-            hex = hex.replace(/(.)/g, '$1$1');
-        }
-
-        var r = parseInt(hex.substr(0, 2), 16),
-                g = parseInt(hex.substr(2, 2), 16),
-                b = parseInt(hex.substr(4, 2), 16);
-
-        return '#' +
-                ((0 | (1 << 8) + r + (256 - r) * percent / 100).toString(16)).substr(1) +
-                ((0 | (1 << 8) + g + (256 - g) * percent / 100).toString(16)).substr(1) +
-                ((0 | (1 << 8) + b + (256 - b) * percent / 100).toString(16)).substr(1);
+    function darkColor(h) {
+        return tinycolor("hsv(" + h + ", 80%, 60%)").toHexString();
     }
 
 </script>
